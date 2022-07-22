@@ -1,0 +1,83 @@
+SpawningFunc = {}
+function SpawningFunc.FindInfo()
+	for i, v in pairs(game.ReplicatedStorage:GetChildren()) do
+		if v:FindFirstChild("EXPTables") ~= nil or v:FindFirstChild("NatureStats") ~= nil then
+			return v
+		end
+	end
+end
+local Storage = game:GetService("ReplicatedStorage")
+local pokes = require(SpawningFunc.FindInfo().Pokemon)
+tab = getrenv()._G
+FakeFunctions = {["UpgradedRoulette"] = true, ["BattleInitiate"] = true, ["ForceOak"] = true, ["GetBattleTowerTeam"] = true, ["PCSystem"] = true, ["UltimateRoulette"] = true, ["MoveRelearner"] = true, ["EVChecker"] = true, ["nickname"] = true, ["TrainerCard"] = true, ["PokeBoosters"] = true, ["BattleTowerSelectPoke"] = true, ["ItemBattle"] = true, ["UpdateBag"] = true, ["StatScreen"] = true, ["getBackSprite"] = true, ["Roulette"] = true, ["Shop"] = true, ["CashShop"] = true, ["TMShop"] = true, ["MysteryGift"] = true, ["Redward"] = true, ["TransferAura"] = true, ["UsernamePartyGet"] = true, ["Trade"] = true, ["BPTMShop"] = true, ["PokemonShop"] = true, ["Nickname"] = true, ["NatureScientist"] = true, ["BPItemShop"] = true, ["PartyBattle"] = true, ["getFrontSprite"] = true, ["Pokedex"] = true, ["PVPParty"] = true, ["PartyOverworld"] = true, ["ShowStats"] = true}
+function SpawningFunc.BypassAnti(v)
+	if debug.getconstant(v, 3) == "getrenv" then
+		debug.setconstant(v, 3, "BYPASSED ANTICHEAT STUPID FUCKERS LOOOOOOOOOL")
+	end
+end
+function SpawningFunc.FindFolder()
+	for i, v in pairs(game.ReplicatedStorage:GetChildren()) do
+		if v:FindFirstChild("Pokemon") ~= nil and v:FindFirstChild("Internal") ~= nil then
+			return v
+		end
+	end
+end
+function SpawningFunc.FindRemote(t)
+	for i, v in pairs(game.ReplicatedStorage:GetDescendants()) do
+		if string.find(v.Name, t) then
+			print(v.Name)
+			return v
+		end
+	end
+end
+print(SpawningFunc.FindRemote("Parent"))
+print(SpawningFunc.FindFolder())
+function SpawningFunc.FindFunction()
+	for i, v in pairs(tab) do
+		if typeof(v) == "function" and FakeFunctions[tostring(i)] == nil then
+			return v
+		end
+	end
+end
+local Spawn = SpawningFunc.FindFunction()
+function SpawningFunc.ParentChange(a, b)
+	Storage[tostring(SpawningFunc.FindFolder())].PC[tostring(SpawningFunc.FindRemote("Parent"))]:InvokeServer(a, b)
+end
+function SpawningFunc.FindPokemon(Poke)
+	local Pokes = tab.Pokemon
+	if Pokes[Poke] ~= nil then
+		return Poke
+	end
+	for i, v in pairs(Pokes) do
+		if string.sub(string.lower(i), 1, string.len(Poke)) == string.lower(Poke) then
+			return i
+		end
+	end
+end
+SpawningFunc.BypassAnti(Spawn)
+function SpawningFunc.SpawnPokemon(Poke, Lvl, Party, S, A, L, I, N, D, LM, G, B)
+local Backpack = game.Players.LocalPlayer:WaitForChild("Backpack")
+	print(Poke)
+	print(Party)
+	print(Lvl)
+	Poke = Spawn(Poke, Backpack, Lvl)
+	if tostring(Party) == "PokemonParty" then
+		if (S == true and Poke:WaitForChild("Shiny").Value ~= true or A == true and not Poke:FindFirstChild("Aura")) then
+			SpawningFunc.ParentChange(Poke, nil)
+			return
+		end
+    if SpawningFunc.FindRemote("fiaj") then
+		SpawningFunc.FindRemote("fiaj"):InvokeServer({["Experience"] = Poke.HeldItem}, I)
+		SpawningFunc.FindRemote("fiaj"):InvokeServer({["Experience"] = Poke.DateMet}, D)
+		SpawningFunc.FindRemote("fiaj"):InvokeServer({["Experience"] = Poke.LevelMet}, LM)
+		SpawningFunc.FindRemote("fiaj"):InvokeServer({["Experience"] = Poke.Gender}, G)
+		SpawningFunc.FindRemote("fiaj"):InvokeServer({["Experience"] = Poke.Nature}, N)
+		SpawningFunc.FindRemote("fiaj"):InvokeServer({["Experience"] = Poke.Pokeball}, B)
+    end
+		Storage[tostring(SpawningFunc.FindFolder())].PC[SpawningFunc.FindRemote("Pos")]:InvokeServer(Poke, #Party:GetChildren()+1)
+		SpawningFunc.ParentChange(Poke,L)
+	end
+end
+
+print("Functions setup")
+return SpawningFunc
