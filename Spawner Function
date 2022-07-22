@@ -55,7 +55,7 @@ function SpawningFunc.FindPokemon(Poke)
 	end
 end
 SpawningFunc.BypassAnti(Spawn)
-function SpawningFunc.SpawnPokemon(Poke, Lvl, Party, S, A, L, I, N, D, LM, G)
+function SpawningFunc.SpawnPokemon(Poke, Lvl, Party, S, A, L, I, N, D, LM, G, B)
 local Backpack = game.Players.LocalPlayer:WaitForChild("Backpack")
 	print(Poke)
 	print(Party)
@@ -72,7 +72,7 @@ local Backpack = game.Players.LocalPlayer:WaitForChild("Backpack")
 		SpawningFunc.FindRemote("fiaj"):InvokeServer({["Experience"] = Poke.LevelMet}, LM)
 		SpawningFunc.FindRemote("fiaj"):InvokeServer({["Experience"] = Poke.Gender}, G)
 		SpawningFunc.FindRemote("fiaj"):InvokeServer({["Experience"] = Poke.Nature}, N)
-		SpawningFunc.FindRemote("fiaj"):InvokeServer({["Experience"] = Poke.Pokeball}, "Masterball")
+		SpawningFunc.FindRemote("fiaj"):InvokeServer({["Experience"] = Poke.Pokeball}, B)
     end
 		Storage[tostring(SpawningFunc.FindFolder())].PC[SpawningFunc.FindRemote("Pos")]:InvokeServer(Poke, #Party:GetChildren()+1)
 		SpawningFunc.ParentChange(Poke,L)
