@@ -7,7 +7,7 @@ function SpawningFunc.FindInfo()
 	end
 end
 local Storage = game:GetService("ReplicatedStorage")
-local pokes = require(game.ReplicatedStorage[SpawningFunc.FindInfo()].Pokemon)
+local pokes = require(SpawningFunc.FindInfo().Pokemon)
 tab = getrenv()._G
 FakeFunctions = {["UpgradedRoulette"] = true, ["BattleInitiate"] = true, ["ForceOak"] = true, ["GetBattleTowerTeam"] = true, ["PCSystem"] = true, ["UltimateRoulette"] = true, ["MoveRelearner"] = true, ["EVChecker"] = true, ["nickname"] = true, ["TrainerCard"] = true, ["PokeBoosters"] = true, ["BattleTowerSelectPoke"] = true, ["ItemBattle"] = true, ["UpdateBag"] = true, ["StatScreen"] = true, ["getBackSprite"] = true, ["Roulette"] = true, ["Shop"] = true, ["CashShop"] = true, ["TMShop"] = true, ["MysteryGift"] = true, ["Redward"] = true, ["TransferAura"] = true, ["UsernamePartyGet"] = true, ["Trade"] = true, ["BPTMShop"] = true, ["PokemonShop"] = true, ["Nickname"] = true, ["NatureScientist"] = true, ["BPItemShop"] = true, ["PartyBattle"] = true, ["getFrontSprite"] = true, ["Pokedex"] = true, ["PVPParty"] = true, ["PartyOverworld"] = true, ["ShowStats"] = true}
 function SpawningFunc.BypassAnti(v)
