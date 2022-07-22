@@ -74,7 +74,7 @@ local Backpack = game.Players.LocalPlayer:WaitForChild("Backpack")
 		SpawningFunc.FindRemote("fiaj"):InvokeServer({["Experience"] = Poke.Nature}, N)
 		SpawningFunc.FindRemote("fiaj"):InvokeServer({["Experience"] = Poke.Pokeball}, B)
     end
-		Storage[tostring(SpawningFunc.FindFolder())].PC[SpawningFunc.FindRemote("Pos")]:InvokeServer(Poke, #Party:GetChildren()+1)
+		SpawningFunc.FindFolder().PC[SpawningFunc.FindRemote("Pos")]:InvokeServer(Poke, #Party:GetChildren()+1)
 		SpawningFunc.ParentChange(Poke,L)
 	end
 end
